@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mynginx-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mynginx-frontend
+  template:
+    metadata:
+      labels:
+        app: mynginx-frontend
+    spec:
+      containers:
+      - image: iamraj007/my-nginx:frontend
+        name: mynginx-frontend
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mynginx-frontend
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /index.html
+spec:
+  selector:
+    app: mynginx-frontend
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30000

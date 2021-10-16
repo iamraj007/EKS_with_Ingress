@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mynginx-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mynginx-backend
+  template:
+    metadata:
+      labels:
+        app: mynginx-backend
+    spec:
+      containers:
+      - image: iamraj007/my-nginx:backend
+        name: mynginx-backend
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mynginx-backend
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /index.html
+spec:
+  selector:
+    app: mynginx-backend
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30001

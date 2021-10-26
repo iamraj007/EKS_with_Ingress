@@ -6,8 +6,12 @@
 # AWS EKS with Ingress
 AWS EKS implementation with Kubernetes Ingress in minutes.
 
+Please follow my medium post for detailed sequence of steps to accomplish a running EKS cluster with ingress on AWS. 
+
+![My Ingress](https://user-images.githubusercontent.com/47947075/138943793-dbec1bd6-ee13-465e-8c71-db8da41aae2d.png)
 
 
 [<img src="https://img.shields.io/badge/medium-%2312100E.svg?&style=for-the-badge&logo=medium&logoColor=white" />](https://medium.com/@rajesh007)
+
 
 
